@@ -4,7 +4,7 @@ SRCS		= $(wildcard srcs/*.c)
 
 OBJS		= $(SRCS:%.c=%.o)
 
-LIBFTA		= ./utils/libft/libft.a
+LIBFTA		= ./libft/libft.a
 
 MLX		= ./mlx/libmlx.a
 
@@ -30,8 +30,8 @@ $(NAME): 	 $(MLX) $(LIBFTA) $(OBJS)
 $(MLX):
 			make -C mlx
 
-$(LIBFTA):
-			make -C libft
+# $(LIBFTA):
+# 			make -C libft
 
 clean:
 			$(RM) $(OBJS)
@@ -44,13 +44,6 @@ fclean:		clean
 re:			fclean all
 
 .PHONY:		all clean re fclean
-
-god:
-			git status
-			git add .
-			git status
-			git commit -m "🔥Random Makefile Commit🔥"
-			git status
 
 #COLORS
 GREEN = \033[1;32m

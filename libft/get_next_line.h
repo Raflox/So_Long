@@ -6,7 +6,7 @@
 /*   By: rafilipe <rafilipe@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 12:29:59 by rafilipe          #+#    #+#             */
-/*   Updated: 2023/01/21 17:08:51 by rafilipe         ###   ########.fr       */
+/*   Updated: 2023/05/24 00:51:33 by rafilipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <stdint.h>
 
 char	*get_next_line(int fd);
-size_t	ft_strlen(const char *str);
+size_t	mod_strlen(const char *str);
 char	*ft_join(char *line, char *stash);
 int		ft_nextclean(char *stash);
 

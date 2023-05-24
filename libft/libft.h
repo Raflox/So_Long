@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafilipe <rafilipe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafilipe <rafilipe@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:04:18 by rafilipe          #+#    #+#             */
-/*   Updated: 2022/11/02 12:26:47 by rafilipe         ###   ########.fr       */
+/*   Updated: 2023/05/24 00:38:53 by rafilipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,8 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 
+/* GNL */
+char	*get_next_line(int fd);
+char	*ft_join(char *line, char *stash);
+int		ft_nextclean(char *stash);
 #endif

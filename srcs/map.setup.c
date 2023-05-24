@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   map.setup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rafilipe <rafilipe@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/25 12:29:53 by rafilipe          #+#    #+#             */
-/*   Updated: 2023/01/30 22:55:12 by rafilipe         ###   ########.fr       */
+/*   Created: 2023/05/24 01:14:55 by rafilipe          #+#    #+#             */
+/*   Updated: 2023/05/24 01:15:21 by rafilipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../include/so_long.h"
 
-char	*get_next_line(int fd)
+char	**map_array(char *infile)
 {
-	static char	stash[BUFFER_SIZE + 1];
-	char		*line;
-	int 		i;
-	
-	i = 0;
-	if (read(fd, 0, 0) < 0 || BUFFER_SIZE < 1)
+	int		fd;
+	char	*big;
+	char	*temp;
+	char	**matrix;
+
+	fd = open(infile, O_RDONLY);
+	if (fd < 0 || !infile)
+		error("Map File not valid\n");
+	big = ft_calloc(1,1);
+	while (TRUE)
 	{
-		while (stash[i])
-			stash[i++] = 0;
-		return (NULL);
-	}
-	line = NULL;
-	while (*stash || read(fd, stash, BUFFER_SIZE) > 0)
-	{
-		line = ft_join(line, stash);
-		if (ft_nextclean(stash))
+		temp = get_next_line(fd);
+		if (!temp)
 			break ;
+		big = ft_strjoin(big, temp);
+		free(temp);
 	}
-	return (line);
+	matrix = ft_split(big, '\n');
+	free(big);
+	close(fd);
+	parse_map(matrix);
+	return (matrix);
 }

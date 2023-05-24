@@ -1,45 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   debug_fts.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rafilipe <rafilipe@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/23 11:51:21 by rafilipe          #+#    #+#             */
-/*   Updated: 2023/05/24 01:32:19 by rafilipe         ###   ########.fr       */
+/*   Created: 2023/05/24 00:05:49 by rafilipe          #+#    #+#             */
+/*   Updated: 2023/05/24 00:47:11 by rafilipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	parse_map(char **matrix)
+void	print_matrix(char **matrix)
 {
-	// Check Walls
-	// Check for Exit
-	// Check for player position
-	// Check Path
-	(void)matrix;
+	char **temp;
 	
-}
-
-t_map	setup_map(char *infile)
-{
-	t_map	map;
-
-	map.matrix = map_array(infile);
-	/* print_matrix(map.matrix); */
-	return (map);
-}
-
-int	main(int ac, char **av)
-{
-	t_program	game;
-
-	if (check_args(ac, av))
+	temp = matrix;
+	while (*temp)
 	{
-		/* printf("AQUI\n"); */
-		game.mlx = mlx_init();
-		game.map = setup_map(av[1]);
+		printf("%s\n", *temp);
+		temp++;
 	}
-	return (0);
 }
