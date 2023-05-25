@@ -6,13 +6,13 @@
 /*   By: rafilipe <rafilipe@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 00:05:49 by rafilipe          #+#    #+#             */
-/*   Updated: 2023/05/24 00:47:11 by rafilipe         ###   ########.fr       */
+/*   Updated: 2023/05/24 20:22:08 by rafilipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	print_matrix(char **matrix)
+void	matrix_print(char **matrix)
 {
 	char **temp;
 	

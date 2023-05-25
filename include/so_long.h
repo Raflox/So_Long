@@ -6,7 +6,7 @@
 /*   By: rafilipe <rafilipe@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 11:51:41 by rafilipe          #+#    #+#             */
-/*   Updated: 2023/05/24 01:31:53 by rafilipe         ###   ########.fr       */
+/*   Updated: 2023/05/25 01:29:03 by rafilipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,16 @@
 # define FALSE 0
 
 /* STRUCTS */
-typedef struct s_axis {
-	int	x;
-	int	y;
-}	t_axis;
-
+typedef struct s_coord {
+	int	row;
+	int	len;
+}	t_coord;
 
 typedef struct s_map {
 	char	**matrix;
 	int		h;
 	int		w;
+	t_coord	player;
 }	t_map;
 
 typedef struct s_program {
@@ -51,15 +51,25 @@ typedef struct s_program {
 // Error
 void	error(char *str);
 
-//Checkers
+// Checkers
 int		check_ext(char *infile);
 int		check_args(int ac, char **av);
 
-//Map Setup
-char	**map_array(char *infile);
-void	parse_map(char **matrix);
+// Map Setup
+char	**get_map(char *infile);
+int		setup_map(char **matrix, t_map *map);
+int		map_size(char **matrix, t_map *map);
+int		check_walls(char **matrix, t_map *map);
+int		check_walls(char **matrix, t_map *map);
+int		check_tokens(char **matrix, t_map *map);
+int		solution_ok(char **matrix, t_map map);
+
+// Auxiliary
+int		str_srch(char *s, char c);
+void	get_coord(t_map *map, t_coord *axis, char token);
+
 
 /* DEGUG --> DELETE LATER */
-void	print_matrix(char **matrix);
+void	matrix_print(char **matrix);
 
 #endif
