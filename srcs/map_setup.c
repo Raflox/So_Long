@@ -6,7 +6,7 @@
 /*   By: rafilipe <rafilipe@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 01:14:55 by rafilipe          #+#    #+#             */
-/*   Updated: 2023/06/22 18:48:40 by rafilipe         ###   ########.fr       */
+/*   Updated: 2023/06/23 00:42:39 by rafilipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	**get_map(char *infile)
 	fd = open(infile, O_RDONLY);
 	if (fd < 0 || !infile)
 		error("Map File not valid\n");
-	big = ft_calloc(1,1);
+	big = ft_calloc(1, 1);
 	while (TRUE)
 	{
 		temp = get_next_line(fd);
@@ -31,12 +31,13 @@ char	**get_map(char *infile)
 		big = ft_strjoin(big, temp);
 		free(temp);
 	}
+	if ((ft_strnstr(big, "\n\n", ft_strlen(big)) != 0))
+		error("Map File not valid\n");
 	matrix = ft_split(big, '\n');
 	free(big);
 	close(fd);
 	return (matrix);
 }
-
 
 static int	map_size(char **matrix, t_map *map)
 {
@@ -103,9 +104,6 @@ static int	check_tokens(char **matrix, t_map *map)
 		collectible += (str_srch(matrix[i], 'C'));
 		i++;
 	}
-/* 	printf("exit: %d\n", exit);
-	printf("player: %d\n", player);
-	printf("collectible: %d\n", collectible); */
 	if (player != 1 || exit != 1 || collectible == 0)
 		error("Check for DUPLICATE TOKENS or NO COLLECTIBLES");
 	map->collectible = collectible;

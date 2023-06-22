@@ -6,11 +6,20 @@
 /*   By: rafilipe <rafilipe@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 23:46:52 by rafilipe          #+#    #+#             */
-/*   Updated: 2023/06/22 14:07:46 by rafilipe         ###   ########.fr       */
+/*   Updated: 2023/06/23 00:15:27 by rafilipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+void	counter(t_program *game)
+{
+	char	*counter;
+
+	counter = ft_itoa(game->moves);
+	write(1, counter, ft_strlen(counter));
+	write(1, "\n", 1);
+}
 
 int	str_srch(char *s, char c)
 {

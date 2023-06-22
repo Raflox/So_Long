@@ -6,17 +6,17 @@
 /*   By: rafilipe <rafilipe@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 11:51:21 by rafilipe          #+#    #+#             */
-/*   Updated: 2023/06/22 19:13:17 by rafilipe         ###   ########.fr       */
+/*   Updated: 2023/06/22 23:00:44 by rafilipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-
 void	game_init(t_program game)
 {
 	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, game.map.w * 32, game.map.h * 32, "SO_LONG");
+	game.win = mlx_new_window(game.mlx, \
+		game.map.w * 32, game.map.h * 32, "SO_LONG");
 	game.img = malloc(sizeof(t_img));
 	printf("SETUP\n");
 	game.moves = 0;

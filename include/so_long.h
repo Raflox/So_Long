@@ -6,7 +6,7 @@
 /*   By: rafilipe <rafilipe@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 11:51:41 by rafilipe          #+#    #+#             */
-/*   Updated: 2023/06/22 19:19:35 by rafilipe         ###   ########.fr       */
+/*   Updated: 2023/06/23 00:00:17 by rafilipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <string.h>
+# include <stddef.h>
 # include "../mlx/mlx.h"
 # include "../libft/libft.h"
 
@@ -87,6 +88,7 @@ void	is_game_over(t_program *game);
 int		str_srch(char *s, char c);
 void	get_coord(t_map *map, t_coord *axis, char token);
 char	**matrix_cpy(char **src, int row);
+void	counter(t_program *game);
 
 // Images
 void	draw_imgs(t_program game);
@@ -94,6 +96,8 @@ void	get_imgs(t_program game);
 void	*new_file_img(char *path, t_program game);
 
 // Moves
+void	move_sides(t_program *game, int x_move);
+void	move_backforth(t_program *game, int x_move);
 void	move_w(t_program *game);
 void	move_a(t_program *game);
 void	move_s(t_program *game);

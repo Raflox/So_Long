@@ -32,8 +32,6 @@ ARGS	= map.ber
 .c.o:
 			$(CC) -c $< -o $@
 
-run:    ${NAME}
-		./${NAME} ${ARGS}
 
 all:		$(NAME)
 
@@ -41,7 +39,7 @@ $(NAME): 	 $(MLX) $(LIBFTA) $(OBJS)
 			$(CC) $(MLX) $(LIBFTA) $(MLX_FLAGS) $(OBJS) -o $(NAME)
 			clear
 			@ echo "$${HEADER}"
-			@echo "$(GREEN)   Successfully built"
+			@echo "$(GREEN)Successfully built"
 
 
 $(MLX):
@@ -49,6 +47,8 @@ $(MLX):
 
 # $(LIBFTA):
 # 			make -C libft
+run:    ${NAME}
+		./${NAME} ${ARGS}
 
 clean:
 			$(RM) $(OBJS)
