@@ -6,7 +6,7 @@
 /*   By: rafilipe <rafilipe@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:07:12 by rafilipe          #+#    #+#             */
-/*   Updated: 2023/06/22 18:48:32 by rafilipe         ###   ########.fr       */
+/*   Updated: 2023/06/22 19:29:50 by rafilipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ int	exit_game(t_program *game)
 	exit (0);
 }
 
+void	is_game_over(t_program *game)
+{
+	if (!game->map.collectible)
+		exit_game(game);
+}
 int	read_keys(int key_pressed, t_program *game)
 {
 /* 	int	counter;

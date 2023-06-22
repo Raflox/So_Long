@@ -6,7 +6,7 @@
 /*   By: rafilipe <rafilipe@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 11:51:41 by rafilipe          #+#    #+#             */
-/*   Updated: 2023/06/22 18:47:11 by rafilipe         ###   ########.fr       */
+/*   Updated: 2023/06/22 19:19:35 by rafilipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int		has_solution(t_map *map);
 // Window
 int		read_keys(int key_pressed, t_program *game);
 int		exit_game(t_program *game);
+void	is_game_over(t_program *game);
 
 // Auxiliary
 int		str_srch(char *s, char c);
