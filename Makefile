@@ -1,3 +1,12 @@
+define HEADER
+    __             
+   (       /      _ 
+   __)()__(__()/)(/ 
+                _/  
+
+endef
+export HEADER
+
 NAME		= so_long
 
 SRCS		= $(wildcard srcs/*.c)
@@ -18,14 +27,22 @@ CC		= gcc -Wall -Wextra -g -fsanitize=address -Werror
 
 RM		= rm -f
 
+ARGS	= map.ber
+
 .c.o:
 			$(CC) -c $< -o $@
+
+run:    ${NAME}
+		./${NAME} ${ARGS}
 
 all:		$(NAME)
 
 $(NAME): 	 $(MLX) $(LIBFTA) $(OBJS)
 			$(CC) $(MLX) $(LIBFTA) $(MLX_FLAGS) $(OBJS) -o $(NAME)
-			@echo "$(GREEN)Successfully built --> $(YELLOW)$(NAME)$(DEFAULT)"
+			clear
+			@ echo "$${HEADER}"
+			@echo "$(GREEN)   Successfully built"
+
 
 $(MLX):
 			make -C mlx

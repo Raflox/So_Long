@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.setup.c                                        :+:      :+:    :+:   */
+/*   map_setup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rafilipe <rafilipe@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 01:14:55 by rafilipe          #+#    #+#             */
-/*   Updated: 2023/05/25 01:32:08 by rafilipe         ###   ########.fr       */
+/*   Updated: 2023/06/22 18:48:40 by rafilipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,32 +37,8 @@ char	**get_map(char *infile)
 	return (matrix);
 }
 
-int	setup_map(char **matrix, t_map	*map)
-{
-	int	i;
-	int	j;
 
-	i = 0;
-	while (matrix[i])
-	{
-		j = 0;
-		while (matrix[i][j])
-		{
-			if (matrix[i][j] != '1' && matrix[i][j] != '0' \
-				&& matrix[i][j] != 'P' && matrix[i][j] != 'E' \
-				&& matrix[i][j] != 'C')
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	if (map_size(matrix, map) && check_walls(matrix, map) \
-		&& check_tokens(matrix, map) /* && solution_ok(matrix, map) */)
-		return (1);
-	return (0);
-}
-
-int	map_size(char **matrix, t_map *map)
+static int	map_size(char **matrix, t_map *map)
 {
 	int		len;
 	int		rows;
@@ -80,13 +56,15 @@ int	map_size(char **matrix, t_map *map)
 		if (count != len)
 			return (0);
 		rows++;
-	}	
+	}
+	if (rows == len)
+		return (0);
 	map->h = rows;
 	map->w = len;
 	return (1);
 }
 
-int	check_walls(char **matrix, t_map *map)
+static int	check_walls(char **matrix, t_map *map)
 {
 	int	i;
 
@@ -107,7 +85,7 @@ int	check_walls(char **matrix, t_map *map)
 	return (1);
 }
 
-int	check_tokens(char **matrix, t_map *map)
+static int	check_tokens(char **matrix, t_map *map)
 {
 	int	i;
 	int	exit;
@@ -130,5 +108,31 @@ int	check_tokens(char **matrix, t_map *map)
 	printf("collectible: %d\n", collectible); */
 	if (player != 1 || exit != 1 || collectible == 0)
 		error("Check for DUPLICATE TOKENS or NO COLLECTIBLES");
+	map->collectible = collectible;
 	return (1);
+}
+
+int	map_setup(char **matrix, t_map	*map)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (matrix[i])
+	{
+		j = 0;
+		while (matrix[i][j])
+		{
+			if (matrix[i][j] != '1' && matrix[i][j] != '0' \
+				&& matrix[i][j] != 'P' && matrix[i][j] != 'E' \
+				&& matrix[i][j] != 'C')
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	if (map_size(matrix, map) && check_walls(matrix, map) \
+		&& check_tokens(matrix, map) && has_solution(map))
+		return (1);
+	return (0);
 }

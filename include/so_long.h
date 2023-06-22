@@ -6,7 +6,7 @@
 /*   By: rafilipe <rafilipe@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 11:51:41 by rafilipe          #+#    #+#             */
-/*   Updated: 2023/05/25 01:29:03 by rafilipe         ###   ########.fr       */
+/*   Updated: 2023/06/22 18:47:11 by rafilipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,17 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <string.h>
-# include "../include/mlx.h"
+# include "../mlx/mlx.h"
 # include "../libft/libft.h"
 
 /* MACROS */
 # define TRUE 1
 # define FALSE 0
+# define ESC 53
+# define W_KEY 13
+# define A_KEY 0
+# define S_KEY 1
+# define D_KEY 2
 
 /* STRUCTS */
 typedef struct s_coord {
@@ -31,19 +36,32 @@ typedef struct s_coord {
 	int	len;
 }	t_coord;
 
+typedef struct s_img
+{
+	void	*wall;
+	void	*player;
+	void	*exit_true;
+	void	*exit_false;
+	void	*collectible;
+	void	*blank;
+}	t_img;
+
 typedef struct s_map {
 	char	**matrix;
+	char	**temp;
 	int		h;
 	int		w;
+	int		collectible;
+	int		over;
 	t_coord	player;
 }	t_map;
 
 typedef struct s_program {
 	void	*mlx;
 	void	*win;
-	int		h;
-	int		w;
 	t_map	map;
+	t_img	*img;
+	int		moves;
 }	t_program;
 
 /**** SRCS *****/
@@ -57,17 +75,28 @@ int		check_args(int ac, char **av);
 
 // Map Setup
 char	**get_map(char *infile);
-int		setup_map(char **matrix, t_map *map);
-int		map_size(char **matrix, t_map *map);
-int		check_walls(char **matrix, t_map *map);
-int		check_walls(char **matrix, t_map *map);
-int		check_tokens(char **matrix, t_map *map);
-int		solution_ok(char **matrix, t_map map);
+int		map_setup(char **matrix, t_map *map);
+int		has_solution(t_map *map);
+
+// Window
+int		read_keys(int key_pressed, t_program *game);
+int		exit_game(t_program *game);
 
 // Auxiliary
 int		str_srch(char *s, char c);
 void	get_coord(t_map *map, t_coord *axis, char token);
+char	**matrix_cpy(char **src, int row);
 
+// Images
+void	draw_imgs(t_program game);
+void	get_imgs(t_program game);
+void	*new_file_img(char *path, t_program game);
+
+// Moves
+void	move_w(t_program *game);
+void	move_a(t_program *game);
+void	move_s(t_program *game);
+void	move_d(t_program *game);
 
 /* DEGUG --> DELETE LATER */
 void	matrix_print(char **matrix);
