@@ -23,7 +23,7 @@ LINKS		= -L mlx -lmlx -L libft
 
 INCLUDES	= -I mlx -I libft -I .
 
-CC		= gcc -Wall -Wextra -g -fsanitize=address -Werror
+CC		= gcc -g -Wall -Wextra -Werror
 
 RM		= rm -f
 

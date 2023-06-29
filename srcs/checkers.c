@@ -6,7 +6,7 @@
 /*   By: rafilipe <rafilipe@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 21:12:14 by rafilipe          #+#    #+#             */
-/*   Updated: 2023/06/02 00:03:54 by rafilipe         ###   ########.fr       */
+/*   Updated: 2023/06/27 13:01:00 by rafilipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static int	check_pos(char **temp_matrix, t_map *map, int p_row, int p_len)
 	if (p_row < 0 || p_row >= map->h \
 		|| p_len < 0 || p_len >= map->w)
 		return (0);
+	if (temp_matrix[p_row][p_len] == 'E')
+		temp_matrix[p_row][p_len] = '1';
 	if (temp_matrix[p_row][p_len] != '1' \
 		&& temp_matrix[p_row][p_len] != 'X')
 	{
